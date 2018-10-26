@@ -1,0 +1,27 @@
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html{
+    width:100%;
+    height:100%;
+}
+
+body{
+    background-color:#f2f2f2;
+}
+
+
+
+/* CANVAS */
+
+canvas{
+    height:400px;
+    width:600px;
+    margin: 20px auto;
+    background-color:white;
+    display: block;
+    border: 1px solid #999;
+}
