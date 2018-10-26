@@ -10,18 +10,28 @@ body, html{
 }
 
 body{
-    background-color:#f2f2f2;
+    background-color:#11001e;
 }
 
 
 
 /* CANVAS */
 
-canvas{
+.canvas-wrap canvas{
     height:400px;
     width:600px;
-    margin: 20px auto;
-    background-color:white;
+    margin: 50px auto;
+    background-color:#e2e2e2;
     display: block;
-    border: 1px solid #999;
+    border: 5px solid #44dcff;
+}
+
+.canvas-wrap button{
+    margin:50px auto;
+    display: block; 
+    background-color:#44dcff;
+    padding:15px 30px;
+    border:none;
+    cursor:pointer;
+    font-size:1.2em;
 }
