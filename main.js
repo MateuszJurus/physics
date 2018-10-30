@@ -15,9 +15,10 @@ function getRandomPoint(x,y){
     ];
 }
 
-function createLine(fromx, fromy, tox, toy){
+function createLine(fromx, fromy, tox, toy, i){
     //variables to be used when creating the arrow
     var ctx = c.getContext("2d");
+    var text = c.getContext("2d");
     var headlen = 10;
     var angle = Math.atan2(toy-fromy,tox-fromx);
 
@@ -25,8 +26,11 @@ function createLine(fromx, fromy, tox, toy){
     ctx.beginPath();
     ctx.moveTo(fromx, fromy);
     ctx.lineTo(tox, toy);
-    ctx.lineWidth = 1;
     ctx.stroke();
+    //add number of the arrow
+    text.font = '26px Arial';
+    text.fillStyle = "black";
+    text.fillText(i,tox+10,toy+10);
 
     //starting a new path from the head of the arrow to one of the sides of the point
     ctx.beginPath();
@@ -46,10 +50,10 @@ function createLine(fromx, fromy, tox, toy){
 }
 
 function generateLines(){
-    n = Math.floor(Math.random()*2)+5;
+    n = Math.floor(Math.random()*2)+3;
     for(i = 1; i <= n; i++){
         var cord = getRandomPoint(x,y);
-        createLine(x/2,y/2,cord[0],cord[1]);
+        createLine(x/2,y/2,cord[0],cord[1],i);
     }
 }
 
