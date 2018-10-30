@@ -1,18 +1,26 @@
+
 /* 
-############ READ THE INPUT
+############ DOM VARIABLES
 */
 
 const input = document.getElementById('input');
 const button = document.getElementById('submitInput');
+
+/* 
+############ READ THE INPUT
+*/
+
+let nArrows = 3;
+
 input.addEventListener('input', () => {
     let val = parseInt(input.value);
     if(val < 3 || val > 99){
         button.classList.add('button__disabled');
     } else if(val >= 3 || val <= 99){
         button.classList.remove('button__disabled');
+        nArrows = val;        
     }
 })
-
 
 /* 
 ############ DRAW CANVAS
@@ -20,7 +28,7 @@ input.addEventListener('input', () => {
 
 const c = document.getElementById('canvas');
 //Define number of arrows
-const nArrows = 4;
+
 
 //Get canvas size
 var x = window.getComputedStyle(c).width;
@@ -92,3 +100,9 @@ function newCanvas(){
     clear();
     drawArrows(nArrows);
 }
+
+button.addEventListener('click', () => {
+    if(!button.classList.contains('button__disabled')){
+        newCanvas();
+    }
+})
