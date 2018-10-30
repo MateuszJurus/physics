@@ -1,7 +1,4 @@
 const c = document.getElementById('canvas');
-let line = c.getContext('2d');
-let arr1 = c.getContext('2d');
-let arr2 = c.getContext('2d');
 
 //Get canvas size
 var x = window.getComputedStyle(c).width;
@@ -17,30 +14,17 @@ function getRandomPoint(x,y){
         Math.floor(Math.random()*y)
     ];
 }
-/*
-function createLine(){
-    var cord = getRandomPoint(x,y);
-    line.moveTo(x/2,y/2);
-    line.lineTo(cord[0],cord[1]);
-    line.stroke();
-    //
-    const alfa = 
-    //create arrow shape
-    arr1.moveTo(cord[0],cord[1]);
-}
-*/
+
 function createLine(fromx, fromy, tox, toy){
     //variables to be used when creating the arrow
     var ctx = c.getContext("2d");
     var headlen = 10;
-
     var angle = Math.atan2(toy-fromy,tox-fromx);
 
     //starting path of the arrow from the start square to the end square and drawing the stroke
     ctx.beginPath();
     ctx.moveTo(fromx, fromy);
     ctx.lineTo(tox, toy);
-    ctx.strokeStyle = "black";
     ctx.lineWidth = 1;
     ctx.stroke();
 
@@ -57,17 +41,12 @@ function createLine(fromx, fromy, tox, toy){
     ctx.lineTo(tox-headlen*Math.cos(angle-Math.PI/7),toy-headlen*Math.sin(angle-Math.PI/7));
 
     //draws the paths created above
-    ctx.strokeStyle = "black";
-    ctx.lineWidth = 1;
     ctx.stroke();
-    ctx.fillStyle = "black";
     ctx.fill();
 }
 
-
-
 function generateLines(){
-    n = Math.floor(Math.random()*2)+3;
+    n = Math.floor(Math.random()*2)+5;
     for(i = 1; i <= n; i++){
         var cord = getRandomPoint(x,y);
         createLine(x/2,y/2,cord[0],cord[1]);
