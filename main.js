@@ -1,3 +1,23 @@
+/* 
+############ READ THE INPUT
+*/
+
+const input = document.getElementById('input');
+const button = document.getElementById('submitInput');
+input.addEventListener('input', () => {
+    let val = parseInt(input.value);
+    if(val < 3 || val > 99){
+        button.classList.add('button__disabled');
+    } else if(val >= 3 || val <= 99){
+        button.classList.remove('button__disabled');
+    }
+})
+
+
+/* 
+############ DRAW CANVAS
+*/
+
 const c = document.getElementById('canvas');
 //Define number of arrows
 const nArrows = 4;

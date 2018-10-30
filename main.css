@@ -15,6 +15,13 @@ body{
 
 /* CANVAS */
 
+.canvas-wrap{
+    display: flex;
+    flex-flow:column;
+    justify-content: center;
+    align-items: center;
+}
+
 .canvas-wrap canvas{
     height:400px;
     width:600px;
@@ -24,8 +31,13 @@ body{
     border: 5px solid #44dcff;
 }
 
-.canvas-wrap button{
-    margin:50px auto;
+.canvas-wrap input{
+    width:200px;
+    padding:5px 10px;
+}
+
+button{
+    margin:20px 0;
     display: block; 
     background-color:#44dcff;
     padding:15px 30px;
@@ -35,6 +47,16 @@ body{
     transition:.3s;
 }
 
-.canvas-wrap button:hover{
+.button__disabled{
+    cursor: not-allowed;
+    background-color:lightgrey;
+    color:darkgrey;
+}
+
+.button__disabled:hover{
+    box-shadow: none;
+}
+
+button:hover{
     box-shadow: 0px 0px 15px #44dcff;
 }
