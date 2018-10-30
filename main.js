@@ -1,4 +1,6 @@
 const c = document.getElementById('canvas');
+//Define number of arrows
+const nArrows = 4;
 
 //Get canvas size
 var x = window.getComputedStyle(c).width;
@@ -15,7 +17,7 @@ function getRandomPoint(x,y){
     ];
 }
 
-function createLine(fromx, fromy, tox, toy, i){
+function createArrow(fromx, fromy, tox, toy, i){
     //variables to be used when creating the arrow
     var ctx = c.getContext("2d");
     var text = c.getContext("2d");
@@ -49,11 +51,12 @@ function createLine(fromx, fromy, tox, toy, i){
     ctx.fill();
 }
 
-function generateLines(){
-    n = Math.floor(Math.random()*2)+3;
-    for(i = 1; i <= n; i++){
+//generate n lines
+function drawArrows(n){
+    r = Math.floor(Math.random())+n;
+    for(i = 1; i <= r; i++){
         var cord = getRandomPoint(x,y);
-        createLine(x/2,y/2,cord[0],cord[1],i);
+        createArrow(x/2,y/2,cord[0],cord[1],i);
     }
 }
 
@@ -64,8 +67,8 @@ function clear(){
     ctx.beginPath();
 }
 
-//new canvas
+//new canvas with n arrows
 function newCanvas(){
     clear();
-    generateLines();
+    drawArrows(nArrows);
 }
