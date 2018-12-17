@@ -25,14 +25,16 @@ body{
 .canvas-wrap canvas{
     height:400px;
     width:600px;
-    margin: 50px auto;
+    margin: 20px auto 50px;
     background-color:#e2e2e2;
     display: block;
     border: 5px solid #44dcff;
 }
 
+/* CONTROLS */
+
 .canvas-wrap input{
-    width:50px;
+    width:60px;
     padding:5px 10px;
 }
 
@@ -59,4 +61,33 @@ button{
 
 button:hover{
     box-shadow: 0px 0px 15px #44dcff;
+}
+
+/* ANSWER */
+
+#answerBox{
+    display: flex;
+    flex-flow:column wrap;
+    align-items: center;
+}
+
+#answerBox input.answerInput{
+    width:120px;
+}
+
+/* OUTPUT */
+
+#data{
+    display: flex;
+    flex-flow:row wrap;
+    justify-content: center;
+}
+
+.outputNode{
+    position:relative;
+    margin: 15px;
+    padding:15px;
+    background-color:#e2e2e2;
+    color:black;
+    width:80px;
 }
