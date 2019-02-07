@@ -5,7 +5,9 @@
 const input = document.getElementById('input');
 const button = document.getElementById('submitInput');
 const dataOutput = document.getElementById('data');
-const answerInput = document.getElementById('answer')
+const answerInput = document.getElementById('answer');
+const answerOutput = document.getElementById('outputBox');
+const submitAnswer = document.getElementById('submitAnswer');
 
 /* 
 ############ DEFAULT SETTINGS
@@ -21,6 +23,7 @@ input.setAttribute('min', min);
 input.setAttribute('max', max);
 
 var lastArrow = 0;
+let correctAnswer = 0;
 
 /* 
 ############ INPUT
@@ -100,7 +103,6 @@ function createArrow(fromx, fromy, tox, toy, i){
         lastArrow -= length;
     }
     
-
     //draws the paths created above
     ctx.stroke();
     ctx.fill();
@@ -109,21 +111,27 @@ function createArrow(fromx, fromy, tox, toy, i){
     while(dataOutput.childNodes.length >= nArrows){
         dataOutput.removeChild(dataOutput.firstChild)
     }
-    var node = document.createElement('div');
+    const node = document.createElement('div');
     node.setAttribute('class', 'outputNode');
     if(i <= nArrows){
-        var textnode = document.createTextNode(i + " = " + length);
+        if(i % 2 == 0){
+            var textnode = document.createTextNode(i + " = -" + length);
+        }else{
+            var textnode = document.createTextNode(i + " = " + length);
+        }
     }else{
         var textnode = document.createTextNode(i + " = ?");
     }
     node.appendChild(textnode);
     dataOutput.appendChild(node);
+
+    return length;
 }
 
 function drawLast(fromx, fromy, tox, toy, i){
         //variables to be used when creating the arrow
-        var ctx = c.getContext("2d");
-        var text = c.getContext("2d");
+        let ctx = c.getContext("2d");
+        let text = c.getContext("2d");
         length = Math.floor(Math.sqrt(Math.pow((tox-fromx),2)+Math.pow((toy-fromy),2)));
     
         //starting path of the arrow from the start square to the end square and drawing the stroke
@@ -138,16 +146,22 @@ function drawLast(fromx, fromy, tox, toy, i){
         text.fillText(i,tox+10,toy+10);
 }
 
-//generate n lines
+//generate n lines and get the asnwer
 function drawArrows(){
-    r = Math.floor(Math.random())+nArrows;
-    for(i = 1; i <= r; i++){
+    let lengths = [];
+    let answer = 0;
+    for(i = 1; i <= nArrows; i++){
         var cord = getRandomPoint(x,y);
-        createArrow(x/2,y/2,cord[0],cord[1],i);
+        lengths[i] = createArrow(x/2,y/2,cord[0],cord[1],i);
+        //derive the length for the "?" vector
+        if(i % 2 != 0){
+            answer += lengths[i]; 
+        }else{
+            answer -= lengths[i];
+        }
     }
+    return answer;
 }
-
-//get answer
 
 //clear canvas
 function clear(){
@@ -160,10 +174,39 @@ function clear(){
 function newCanvas(){
     var cord = getRandomPoint(x,y);
     clear();
-    drawArrows();
+    let a = drawArrows();
     drawLast(x/2,y/2,cord[0],cord[1],'?');
     lastArrow = 0;
+    correctAnswer = a;
 }
+
+//Get users answer
+submitAnswer.addEventListener('click', ()=>{
+    let a = answerInput.value;
+    checkAnswer(a);
+})
+
+//Output result
+function message(text, val){
+    if(val){
+        answerOutput.innerHTML = text + val;
+    }else{
+        answerOutput.innerHTML = text;
+    }
+}
+
+//Check the asnwer
+function checkAnswer(a){
+    answer = correctAnswer;
+    userInput = a;
+    console.log('Answer:' + answer + ' | User input: ' + userInput);
+    if(answer == userInput){
+        message('Congratulations, correct answer!');
+    }else{
+        message('Wrong answer. Correct answer was: ',answer); 
+    }
+}
+
 
 //Draw new canvas on submit button click
 button.addEventListener('click', () => {

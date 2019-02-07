@@ -2,6 +2,7 @@
     margin:0;
     padding: 0;
     box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 body, html{
@@ -33,7 +34,7 @@ body{
 
 /* CONTROLS */
 
-.canvas-wrap input{
+input{
     width:60px;
     padding:5px 10px;
 }
@@ -71,8 +72,21 @@ button:hover{
     align-items: center;
 }
 
+#answerBox p{
+    color:white;
+    margin:10px;
+    text-align: center;
+}
+
 #answerBox input.answerInput{
     width:120px;
+    display: block;
+    margin:10px auto;
+}
+
+#outputBox{
+    color:white;
+    text-align:center;
 }
 
 /* OUTPUT */
@@ -89,5 +103,6 @@ button:hover{
     padding:15px;
     background-color:#e2e2e2;
     color:black;
-    width:80px;
+    text-align:center;
+    width:100px;
 }
